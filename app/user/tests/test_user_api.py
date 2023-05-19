@@ -42,9 +42,9 @@ class PublicUserApiTests(TestCase):
     def test_user_with_email_exists_error(self):
         """Test error returned if user with email exists"""
         payload = {
-                'email': 'test@example.com',
-                'password': 'testpass123',
-                'name': 'Test Name',
+            'email': 'test@example.com',
+            'password': 'testpass123',
+            'name': 'Test Name',
         }
         create_user(**payload)
         res = self.client.post(CREATE_USER_URL, payload)
@@ -54,9 +54,9 @@ class PublicUserApiTests(TestCase):
     def test_password_too_short_error(self):
         """Test an error is returned if password is short than  5 chars."""
         payload = {
-                'email': 'test@example.com',
-                'password': 'pw',
-                'name': 'Test Name',
+            'email': 'test@example.com',
+            'password': 'pw',
+            'name': 'Test name',
         }
         res = self.client.post(CREATE_USER_URL, payload)
 
@@ -127,8 +127,8 @@ class PrivateUserApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, {
-            'name':self.user.name,
-            'email':self.user.email,
+            'name': self.user.name,
+            'email': self.user.email,
         })
 
     def test_post_me_not_allowed(self):
@@ -139,7 +139,7 @@ class PrivateUserApiTests(TestCase):
 
     def test_update_user_profile(self):
         """Test updating the user profile for authenticated user."""
-        payload = {'name':'Updated name', 'password':'newpassword123'}
+        payload = {'name': 'Updated name', 'password': 'newpassword123'}
 
         res = self.client.patch(ME_URL, payload)
 
